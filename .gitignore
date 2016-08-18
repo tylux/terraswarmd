@@ -1,0 +1,6 @@
+terraform.tfvars
+terraform.tfstate
+cloud-config/docker-swarm-master.yml
+cloud-config/docker-swarm-worker.yml
+terraform.tfstate.backup
+ssh/
