@@ -1,0 +1,19 @@
+dependencies:
+  cache_directories:
+    - terraform_0.6.16
+  pre:
+    - mkdir -p terraform_0.6.16
+    - wget -O terraform_0.6.16/terraform_0.6.16_linux_amd64.zip https://releases.hashicorp.com/terraform/0.6.16/terraform_0.6.16_linux_amd64.zip
+    - unzip terraform_0.6.16/terraform_0.6.16_linux_amd64.zip
+
+test:
+  override:
+    - ./terraform remote config --backend=S3 --backend-config="bucket=$BUCKET" --backend-config="key=terraform.tfstate" --backend-config="region=us-west-1"
+    - ./terraform plan --out=terraform.plan
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - ./terraform apply terraform.plan
+      - ./terraform remote push

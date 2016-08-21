@@ -1,10 +1,3 @@
-variable "access_key" { 
-  description = "AWS access key"
-}
-
-variable "secret_key" { 
-  description = "AWS secret access key"
-}
 
 variable "region"     { 
   description = "AWS region to host your network"
@@ -44,3 +37,4 @@ variable "amis" {
     us-east-1 = "ami-a6b8e7ce"
   }
 }
+
